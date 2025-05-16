@@ -1,0 +1,16 @@
+body {
+    background-color: #000;
+    color: #0ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+#painel {
+    margin-top: 50px;
+}
+footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    color: #666;
+    font-size: 14px;
+}

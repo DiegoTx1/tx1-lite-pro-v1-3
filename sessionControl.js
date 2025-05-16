@@ -1,1 +1,1 @@
-// Controle de sessão, horário do mercado, bloqueio após meta
+// Futuro controle de sessão de mercado por horário real

@@ -1,1 +1,25 @@
-/* Estilo visual do TX1 LITE REAL PRO v1.3.2 */
+
+body {
+    background: #0d0d0d;
+    color: #00ffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+h1 { margin-top: 20px; }
+.painel { padding: 20px; }
+footer {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 12px;
+    color: #888;
+}
+button {
+    margin: 5px;
+    padding: 10px;
+    background: #00ffff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}

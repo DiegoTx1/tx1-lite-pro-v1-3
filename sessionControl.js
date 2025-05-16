@@ -1,0 +1,1 @@
+// Controle de sessão, horário do mercado, bloqueio após meta

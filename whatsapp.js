@@ -1,0 +1,1 @@
+// Função de envio de comandos reais para WhatsApp via webhook

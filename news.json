@@ -1,1 +1,7 @@
-{ "eventos": [ {"hora": "09:30", "impacto": "alto"}, {"hora": "15:00", "impacto": "médio"} ] }
+
+{
+  "eventos": [
+    { "hora": "09:30", "impacto": "alto" },
+    { "hora": "15:00", "impacto": "médio" }
+  ]
+}

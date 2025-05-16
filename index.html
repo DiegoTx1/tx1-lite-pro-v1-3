@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>TX1 LITE REAL PRO</title>
+    <title>TX1 LITE REAL PRO - v1.3.1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="painel">
-        <h1>TX1 LITE REAL PRO - v1.3</h1>
-        <p id="mensagem">Mensagem do Guardião: Confiança é sua maior entrada. TX1 está com você.</p>
-        <p id="comando">Comando Atual: <span style="color:cyan;">CARREGANDO...</span></p>
-        <footer>TX1 LITE REAL PRO v1.3 — Diego L. & Guardião TX1 // Precisão sem Ruído</footer>
+    <h1>TX1 LITE REAL PRO - v1.3.1</h1>
+    <div class="mensagem">Mensagem do Guardião: Confiança é sua maior entrada. TX1 está com você.</div>
+    <div class="comando">Comando Atual: <span id="comando">CARREGANDO...</span></div>
+    <div class="score">Confiabilidade: <span id="score">--%</span></div>
+    <div class="criterios">Critérios Técnicos: RSI, Engolfo de Alta, MACD cruzado</div>
+    <div class="horario">Entrada recomendada: <span id="horario">--:--</span></div>
+    <div class="historico">Histórico: <span id="historico">0 WIN / 0 LOSS</span></div>
+    <div class="painel">
+        <button onclick="registrarEntrada('CALL')">CALL</button>
+        <button onclick="registrarEntrada('PUT')">PUT</button>
+        <button onclick="registrarEntrada('ESPERAR')">ESPERAR</button>
+        <button onclick="finalizarSessao()">Finalizar Sessão</button>
     </div>
+    <footer>TX1 LITE REAL PRO v1.3.1 — Diego L. & Guardião TX1 // Precisão sem Ruído</footer>
     <script src="script.js"></script>
 </body>
 </html>

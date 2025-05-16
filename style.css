@@ -1,16 +1,29 @@
 body {
-    background-color: #000;
-    color: #0ff;
+    background-color: #0d0d0d;
+    color: #00ffff;
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 30px;
 }
-#painel {
-    margin-top: 50px;
-}
+h1 { font-size: 2em; margin-bottom: 10px; }
+.mensagem { font-size: 1.1em; margin-bottom: 20px; }
+.comando { font-size: 1.6em; font-weight: bold; margin-top: 20px; }
+.score, .criterios, .horario, .historico { margin-top: 15px; font-size: 1em; }
 footer {
     position: fixed;
     bottom: 10px;
     width: 100%;
-    color: #666;
-    font-size: 14px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+button {
+    margin: 8px;
+    padding: 10px 20px;
+    background-color: #00ffff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
 }

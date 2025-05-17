@@ -1,0 +1,1 @@
+// Configurações do sistema TX1 v1.4.3

@@ -1,0 +1,1 @@
+// Leitura real de gráfico BTC/USDT

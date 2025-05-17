@@ -1,7 +1,7 @@
 
 {
-  "eventos": [
-    { "hora": "09:30", "impacto": "alto" },
-    { "hora": "15:00", "impacto": "médio" }
+  "high_impact_news": [
+    { "day": "2025-05-16", "hour": "15" },
+    { "day": "2025-05-17", "hour": "10" }
   ]
 }

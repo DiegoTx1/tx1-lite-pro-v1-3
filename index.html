@@ -2,32 +2,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>TX1 LITE REAL PRO v1.4</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="realAnalyzer.js"></script>
-    <script defer src="whatsapp.js"></script>
+  <meta charset="UTF-8">
+  <title>TX1 LITE REAL PRO</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="sessionControl.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="whatsapp.js" defer></script>
 </head>
 <body>
-    <div class="painel">
-        <h1>TX1 LITE REAL PRO</h1>
-        <div id="sessao">Sessão: Londres – Alta Liquidez</div>
-        <div id="status">Status: Monitorando gráfico em tempo real</div>
-        <div id="mensagem">Mensagem do Guardião: Confiança é sua maior entrada.</div>
-        <div id="comando">Comando Atual: <strong>ESPERAR</strong></div>
-        <div id="score">Confiabilidade: --%</div>
-        <div id="horario">Entrada: --:--</div>
-        <div id="contador">Lendo vela: --</div>
-        <div id="historico">Histórico: 0 WIN / 0 LOSS</div>
-        <div id="historicoDetalhado"></div>
-        <div class="botoes">
-            <button onclick="registrarWin()">WIN</button>
-            <button onclick="registrarLoss()">LOSS</button>
-            <button onclick="toggleSom()">Som: Ligado</button>
-            <button onclick="finalizarSessao()">Finalizar Sessão</button>
-        </div>
+  <div class="container">
+    <h1>TX1 LITE REAL PRO</h1>
+    <p id="greeting">Olá, Sr. Diego. Tenha uma ótima sessão de operações.</p>
+    <p class="session">Sessão: <span id="session">Detectando...</span></p>
+    <p id="sessionStatus" class="status">Verificando...</p>
+    <p>Comando Atual: <span id="command">ESPERAR</span></p>
+    <p>Confiabilidade: <span id="confidence">0%</span></p>
+    <p>Entrada: <span id="entryTime">--:--</span></p>
+    <p>Lendo vela: <span id="candleTime">0s / 60s</span></p>
+    <p>Histórico: <span id="history">0 WIN / 0 LOSS</span></p>
+    <div class="buttons">
+      <button onclick="registerWin()">WIN</button>
+      <button onclick="registerLoss()">LOSS</button>
+      <button onclick="toggleSound()">Som: <span id="soundStatus">Ligado</span></button>
+      <button onclick="toggleSession()" id="sessionButton">Finalizar Sessão</button>
     </div>
-    <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=br#%7B%22symbol%22%3A%22BINANCE%3ABTCUSDT%22,%22width%22:%22100%%22,%22height%22:%22200%22%7D" width="100%" height="200" frameborder="0"></iframe>
-    <footer>TX1 LITE REAL PRO v1.4 — Diego L. & Guardião TX1 // Precisão sem Ruído</footer>
+    <iframe src="grafico.html" class="chart-frame"></iframe>
+    <footer class="footer">TX1 LITE REAL PRO v1.4.1 — Diego L. & Guardião TX1 // Precisão sem Ruído</footer>
+  </div>
 </body>
 </html>

@@ -1,45 +1,83 @@
 
-let segundos = 0;
-let wins = 0, losses = 0;
-let somAtivo = true;
+let reading = true;
+let soundOn = true;
+let win = 0;
+let loss = 0;
+let seconds = 0;
 
-function leituraVela() {
-    segundos++;
-    if (segundos > 59) {
-        segundos = 0;
-        analisarCandle();
-    }
-    document.getElementById("contador").textContent = `Lendo vela: ${segundos}s / 60s`;
+function updateCandle() {
+  if (reading) {
+    seconds++;
+    if (seconds > 60) seconds = 1;
+    document.getElementById("candleTime").textContent = seconds + "s / 60s";
+    if (seconds === 58) updateCommand();
+  }
+}
+setInterval(updateCandle, 1000);
+
+function updateCommand() {
+  const commands = ["CALL", "PUT", "ESPERAR"];
+  const command = commands[Math.floor(Math.random() * commands.length)];
+  const confidence = Math.floor(Math.random() * 41) + 60;
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+  document.getElementById("command").textContent = command;
+  document.getElementById("confidence").textContent = confidence + "%";
+  document.getElementById("entryTime").textContent = time;
+  if (soundOn && (command === "CALL" || command === "PUT")) {
+    new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg").play();
+  }
+
+  sendToWhatsApp(command, confidence, time);
 }
 
-function analisarCandle() {
-    const horario = new Date();
-    const min = String(horario.getMinutes()).padStart(2, '0');
-    const hora = String(horario.getHours()).padStart(2, '0');
-    const comandoPossivel = ["CALL", "PUT", "ESPERAR"];
-    const escolha = Math.random();
-    let comando = "ESPERAR";
-    let score = Math.floor(Math.random() * 21) + 80;
-    if (escolha > 0.7) comando = "CALL";
-    else if (escolha < 0.3) comando = "PUT";
-
-    document.getElementById("comando").innerHTML = "Comando Atual: <strong>" + comando + "</strong>";
-    document.getElementById("score").textContent = "Confiabilidade: " + score + "%";
-    document.getElementById("horario").textContent = `Entrada: ${hora}:${min}`;
-
-    if (comando !== "ESPERAR" && somAtivo) {
-        new Audio('https://www.soundjay.com/buttons/sounds/beep-07.mp3').play();
-        sendToWhatsApp(comando, score, `${hora}:${min}`);
-    }
+function registerWin() {
+  win++;
+  updateHistory();
+}
+function registerLoss() {
+  loss++;
+  updateHistory();
+}
+function updateHistory() {
+  document.getElementById("history").textContent = `${win} WIN / ${loss} LOSS`;
+}
+function toggleSound() {
+  soundOn = !soundOn;
+  document.getElementById("soundStatus").textContent = soundOn ? "Ligado" : "Desligado";
+}
+function toggleSession() {
+  reading = !reading;
+  document.getElementById("sessionButton").textContent = reading ? "Finalizar Sessão" : "Iniciar Sessão";
+  document.getElementById("sessionStatus").textContent = reading ? "Sessão ativa" : "Sessão pausada";
 }
 
-function toggleSom() {
-    somAtivo = !somAtivo;
-    document.querySelector("button").textContent = somAtivo ? "Som: Ligado" : "Som: Desligado";
+
+function checkNewsBlock() {
+  const now = new Date();
+  const today = now.toISOString().slice(0, 10); // formato yyyy-mm-dd
+  const hour = now.getHours();
+
+  fetch('news.json')
+    .then(response => response.json())
+    .then(data => {
+      const bloqueios = data.high_impact_news;
+      const noticia = bloqueios.find(n => n.day === today && parseInt(n.hour) === hour);
+      if (noticia) {
+        document.getElementById("command").textContent = "BLOQUEADO";
+        document.getElementById("confidence").textContent = "Notícia de alto impacto";
+        document.getElementById("entryTime").textContent = "--:--";
+        if (soundOn) {
+          new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg").play();
+        }
+        return true;
+      }
+    });
 }
 
-function finalizarSessao() {
-    alert("Sessão encerrada. TX1 em modo de descanso.");
-}
-
-setInterval(leituraVela, 1000);
+// chamar junto ao updateCommand()
+const originalUpdateCommand = updateCommand;
+updateCommand = function() {
+  checkNewsBlock(); // verifica antes de emitir sinal
+  originalUpdateCommand();
+};
